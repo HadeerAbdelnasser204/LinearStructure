@@ -1,6 +1,6 @@
+
 #include <vector>
 #include <iostream>
-
 
 using namespace std;
 
@@ -8,9 +8,9 @@ template<class T>
 class Queue {
 private:
     int size;
-    vector<T> Vqueue;
+    vector<T>Vqueue;
 public:
-    Queue(int sz) {
+    explicit Queue(int sz) {
         size = sz;
     }
 
@@ -40,6 +40,11 @@ public:
     void clear() {
         size = 0;
     }
+    void print(){
+        for (int i = 0; i < size ; ++i) {
+            cout << Vqueue[i] << " ";
 
+        }
+        cout << endl;
+    }
 };
-
