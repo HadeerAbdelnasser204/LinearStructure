@@ -1,0 +1,45 @@
+#include <vector>
+#include <iostream>
+
+
+using namespace std;
+
+template<class T>
+class Queue {
+private:
+    int size;
+    vector<T> Vqueue;
+public:
+    Queue(int sz) {
+        size = sz;
+    }
+
+    void enqueue(T element) {
+        Vqueue.push_back(element);
+    }
+
+    T dequeue() {
+        int ele = Vqueue.front();
+        Vqueue.erase(Vqueue.begin());
+        size--;
+        return ele;
+    }
+
+    T first() {
+        return Vqueue.front();
+    }
+
+    bool isEmpty() {
+        return size == 0;
+    }
+
+    int queueSize() {
+        return size;
+    }
+
+    void clear() {
+        size = 0;
+    }
+
+};
+
