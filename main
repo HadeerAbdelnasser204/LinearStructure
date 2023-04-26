@@ -1,0 +1,19 @@
+
+
+
+
+int main(){
+ Solution solution;
+    Node* l1 = new Node(1);
+    l1->next = new Node(2);
+    l1->next->next = new Node(4);
+    Node* l2 = new Node(1);
+    l2->next = new Node(3);
+    l2->next->next = new Node(4);
+    Node* result = solution.mergeTwoLists(l1, l2);
+    while (result) {
+        cout << result->data << " ";
+        result = result->next;
+    }
+    cout << endl;
+}
