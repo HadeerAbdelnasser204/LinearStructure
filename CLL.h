@@ -5,26 +5,26 @@
 #ifndef DS_A2_CIRCULARLIKEDLIST_H
 #define DS_A2_CIRCULARLIKEDLIST_H
 
-
+template<typename elementType>
 class CircularLikedList {
     struct Node {
-        int data = 0;
-        Node *next = nullptr;
-        Node *pre = nullptr;
+        elementType data;
+        Node *next;
+
+        Node() : data(data), next(nullptr) {}
     };
 private:
-    int size;
-    Node *head;
-    Node *tail;
+       Node *head;
+       int CLLsize;
 public:
 
     CircularLikedList();
 
-    void insertAtHead(int element);
+    void insertAtHead(elementType element);
 
-    void insertAtEnd(int element);
+    void insertAtEnd(elementType element);
 
-    void insertAt(int element, int index);
+    void insertAt(elementType element, int index);
 
     void removeAtHead();
 
@@ -32,13 +32,13 @@ public:
 
     void removeAt(int index);
 
-    int retrieve(int index);
+    elementType retrieveAt(int index);
 
-    void replaceAt(int newElement, int index);
+    void replaceAt(elementType newElement, int index);
 
-    bool isExist(int element);
+    bool isExist(elementType element);
 
-    bool isItemEqual(int element, int index);
+    bool isItemAtEqual(elementType element, int index);
 
     void swap(int firstItemIdx, int secondItemIdx);
 
