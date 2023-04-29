@@ -1,18 +1,26 @@
-// Created by Hadeer on 4/18/2023.
-//
-#include <cstdlib>
+// Created by sara on 4/29/2023.
+// updated by sara on 29/4/2023.
 #include <iostream>
-#include "CircularLikedList.h"
 
 using namespace std;
 
-CircularLikedList::CircularLikedList() {
-    head = nullptr;
-    CLLsize = 0;
-}
-
 template<typename elementType>
-void CircularLikedList::insertAtHead(elementType element) {
+class CircularLikedList {
+    struct Node {
+        elementType data;
+        Node *next;
+
+        Node() : data(data), next(nullptr) {}
+    };
+    Node *head;
+    int CLLsize;
+public:
+    CircularLikedList() {
+        head = nullptr;
+        CLLsize = 0;
+    }
+
+   void insertAtHead(elementType element) {
    Node *newNode = new Node(element);
         if (head == nullptr) {
             newNode->next = newNode;
@@ -26,10 +34,9 @@ void CircularLikedList::insertAtHead(elementType element) {
         }
         head = newNode;
         CLLsize++;
-}
+    }
 
-template<typename elementType>
-void CircularLikedList::insertAtEnd(elementType element) {
+   void insertAtEnd(elementType element) {
    if (isEmpty()) {
             insertAtHead(element);
             return;
@@ -44,10 +51,9 @@ void CircularLikedList::insertAtEnd(elementType element) {
         newNode->next = head;
 
     CLLsize++;
-}
+    }
 
-template<typename elementType>
-void CircularLikedList::insertAt(elementType element, int index) {
+    void insertAt(elementType element, int index) {
    if (index < 0 || index > CLLsize) {
             std::cout << "Invalid index. Insertion failed." << std::endl;
             return;
@@ -76,11 +82,10 @@ void CircularLikedList::insertAt(elementType element, int index) {
 
         prev->next = newNode;
         newNode->next = current;
+        CLLsize++;
     }
-    CLLsize++;
-}
 
-void CircularLikedList::removeAtHead() {
+    void removeAtHead() {
     if (isEmpty()) {
             std::cout << "The list is empty. Removal failed." << std::endl;
             return;
@@ -100,9 +105,8 @@ void CircularLikedList::removeAtHead() {
             delete temp;
         }
     CLLsize--;
-
-}
-void CircularLikedList::removeAtEnd() {
+    }
+    void removeAtEnd() {
          if (isEmpty()) {
             std::cout << "The list is empty. Removal failed." << std::endl;
             return;
@@ -123,10 +127,9 @@ void CircularLikedList::removeAtEnd() {
         prev->next = head;
         delete current;
         CLLsize--;
-}
+    }
 
-
-void CircularLikedList::removeAt(int index) {
+    void removeAt(int index) {
     if (isEmpty()) {
             return;
         }
@@ -158,10 +161,9 @@ void CircularLikedList::removeAt(int index) {
         prev->next = current->next;
         delete current;
         CLLsize--;
-}
+    }
 
-template<typename elementType>
-elementType CircularLikedList::retrieveAt(int index) {
+    elementType retrieveAt(int index) {
     if (isEmpty()) {
             return -1;
         }
@@ -179,10 +181,9 @@ elementType CircularLikedList::retrieveAt(int index) {
         }
 
         return current->data;
-}
+    }
 
-template<typename elementType>
-void CircularLikedList::replaceAt(int newElement, int index) {
+    void replaceAt(int newElement, int index) {
     if (isEmpty()) {
             return;
         }
@@ -200,10 +201,9 @@ void CircularLikedList::replaceAt(int newElement, int index) {
         }
 
         current->data = newElement;
-}
+    }
 
-template<typename elementType>
-bool CircularLikedList::isExist(elementType element) {
+    bool isExist(elementType element) {
     if (isEmpty()) {
             return false;
         }
@@ -217,10 +217,9 @@ bool CircularLikedList::isExist(elementType element) {
         } while (current != head);
 
         return false;
-}
+    }
 
-template<typename elementType>
-bool CircularLikedList::isItemAtEqual(elementType element, int index){
+    bool isItemAtEqual(elementType element, int index){
     if (isEmpty()) {
             return false;
         }
@@ -238,9 +237,9 @@ bool CircularLikedList::isItemAtEqual(elementType element, int index){
         }
 
         return current->data == element;
-}
+    }
 
-void CircularLikedList::swap(int firstItemIdx, int secondItemIdx) {
+    void swap(int firstItemIdx, int secondItemIdx) {
     if (isEmpty() || CLLsize < 2) {
             return;
         }
@@ -290,22 +289,23 @@ void CircularLikedList::swap(int firstItemIdx, int secondItemIdx) {
         Node* temp = currentFirst->next;
         currentFirst->next = currentSecond->next;
         currentSecond->next = temp;
-}
+    }
 
-int CircularLikedList::doubleLinkedListSize() const {
+    int doubleLinkedListSize() const {
     return CLLsize;
-}
-bool CircularLikedList::isEmpty() const {
-    return CLLsize == 0;
-}
+    }
 
-void CircularLikedList::clear() {
+    bool isEmpty() const {
+    return CLLsize == 0;
+    }
+
+    void clear() {
     while (!isEmpty()) {
             removeAtHead();
         }
-}
+    }
 
-void CircularLikedList::print() {
+void print() {
     if (isEmpty()) {
             cout << "The list is empty." << endl;
             return;
@@ -316,4 +316,5 @@ void CircularLikedList::print() {
             current = current->next;
         }
         cout << endl;
-}
+    }
+};
