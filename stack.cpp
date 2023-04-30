@@ -1,56 +1,129 @@
-//
-// Created by saraw on 4/30/2023.
-//
-
-//
-// Created by A plus on 4/19/2023.
-//
 #include <iostream>
-#include <vector>
+#include <string>
+#include <cassert>
 using namespace std;
-template<class T>
-class Stack {
-private:
-    vector<T> s;
-    int size;
+template <class T>
+class Stack
+{
+    int top;
+    int length;
+    int maxSize;
+    T *arr;
+
 public:
-    Stack();
-    explicit Stack(int sz){
-        size = sz;
+    Stack(int size = 10)
+    {
+        if (size <= 0)
+            maxSize = 100;
+        else
+            maxSize = size;
+        top = -1;
+        length = 0;
+        arr = new T[maxSize];
     }
-    void push(T element) {
-        s.push_back(element);
+    bool isEmpty()
+    {
+        if (top < 0)
+            return true;
+        else
+            return false;
     }
-
-    T pop() {
-        T ele = s.front();
-        s.erase(s.begin());
-        return ele;
+    bool isFull()
+    {
+        if (top == maxSize - 1)
+            return true;
+        else
+            return false;
     }
-
-    T top() {
-        return s.front();
+    void push(T element)
+    {
+        if (isFull())
+        {
+            cout << "stack is full" << endl;
+        }
+        else
+        {
+            top++;
+            length++;
+            arr[top] = element;
+        }
     }
-
-    bool isEmpty() {
-        return size == 0;
+    void pop()
+    {
+        if (isEmpty())
+        {
+            cout << "stack is empty" << endl;
+        }
+        else
+        {
+            T element = arr[top];
+            top--;
+            length--;
+        }
     }
-
-    int stackSize() {
-        return size;
+    int stackSize()
+    {
+        return length;
     }
-
-    void clear() {
-        size = 0;
-    }
-    void print(){
-        for (int i = size - 1; i >= 0 ; --i) {
-            cout << s[i] << " ";
+    void print()
+    {
+        for (int i = top; i >= 0; i--)
+        {
+            cout << arr[i] << " ";
         }
         cout << endl;
     }
-
-    // probelm 3 infix to postfix stack
+    void clear()
+    {
+        top = -1;
+        length = 0;
+    }
+    T first()
+    {
+        if (isEmpty())
+        {
+            cout << "stack is empty" << endl;
+            return false;
+        }
+        else
+        {
+            return arr[top];
+        }
+    }
+    bool ArePair(char open, char close)
+    {
+        if (open == '(' && close == ')')
+            return true;
+        else
+            return false;
+    }
+    int Parentheses(string expersion)
+    {
+        Stack s(expersion.length());
+        int sum = 0;
+        for (int i = 0; i < expersion.length(); i++)
+        {
+            if (expersion[i] == '(')
+            {
+                s.push(expersion[i]);
+                // sum++;
+            }
+            else if (expersion[i] == ')')
+            {
+                {
+                    if (s.isEmpty() || !ArePair(s.first(), expersion[i]))
+                    {
+                    }
+                    else
+                    {
+                        s.pop();
+                        sum++;
+                    }
+                }
+            }
+        }
+        return sum * 2;
+    }
     int operatorsWeight(char c)
     {
         if (c == '^')
@@ -102,42 +175,4 @@ public:
 
         cout << result << endl;
     }
-
-// problem longest valid parentheses stack
-    bool ArePair(char open, char close)
-    {
-        if (open == '(' && close == ')')
-            return true;
-        else
-            return false;
-    }
-    int Parentheses(string expersion)
-    {
-        Stack s(expersion.length());
-        int sum = 0;
-        for (int i = 0; i < expersion.length(); i++)
-        {
-            if (expersion[i] == '(')
-            {
-                s.push(expersion[i]);
-                // sum++;
-            }
-            else if (expersion[i] == ')')
-            {
-                {
-                    if (s.isEmpty() || !ArePair(s.first(), expersion[i]))
-                    {
-                    }
-                    else
-                    {
-                        s.pop();
-                        sum++;
-                    }
-                }
-            }
-        }
-        return sum * 2;
-    }
 };
-
-
