@@ -5,42 +5,55 @@
 #include <vector>
 using namespace std;
 
-struct Node{
-    int data;
-    Node * next;
-};
-class SingleLinkedList {
+template <typename elementType>
+class SingleLinkedList
+{
+    struct Node
+    {
+        elementType data;
+        Node *next;
+    };
     Node *head;
     Node *tail;
     int size;
+
 public:
-    SingleLinkedList () {
+    SingleLinkedList()
+    {
         size = 0;
         head = tail = nullptr;
     }
-    void insertAtHead(int element) {
+    void insertAtHead(elementType element)
+    {
         Node *newNode = new Node();
-        newNode -> data = element;
-        if (head == nullptr && tail == nullptr) {
+        newNode->data = element;
+        if (head == nullptr && tail == nullptr)
+        {
             head = tail = newNode;
-
-        } else {
+        }
+        else
+        {
             newNode->next = head;
             head = newNode;
         }
         size++;
     }
-    void insertAtTail(int element) {
+    void insertAtTail(elementType element)
+    {
         Node *newNode = new Node;
         newNode->data = element;
         newNode->next = nullptr;
 
-        if (head == nullptr) {
+        if (head == nullptr)
+        {
             head = newNode;
             tail = newNode;
-        } else {
+        }
+        else
+        {
             Node *current = head;
-            while (current->next != nullptr) {
+            while (current->next != nullptr)
+            {
                 current = current->next;
             }
             current->next = newNode;
@@ -49,21 +62,26 @@ public:
         size++;
     }
 
-    void insertAt(int element, int index) {
+    void insertAt(elementType element, int index)
+    {
         Node *newNode = new Node;
         newNode->data = element;
-        if (index == 0) {
+        if (index == 0)
+        {
             insertAtHead(element);
-
-        } else if (index >= size) {
+        }
+        else if (index >= size)
+        {
             insertAtTail(element);
-        } else {
+        }
+        else
+        {
             Node *current = head;
             int count = 0;
-            while (count != index - 1) {
+            while (count != index - 1)
+            {
                 current = current->next;
                 count++;
-
             }
             newNode->next = current->next;
             current->next = newNode;
@@ -71,30 +89,37 @@ public:
         size++;
     }
 
-
-    void removeAtHead() {
-        if (size == 0) {
+    void removeAtHead()
+    {
+        if (size == 0)
+        {
             return;
-        } else if (size == 1) {
+        }
+        else if (size == 1)
+        {
             delete[] head;
             head = tail = nullptr;
-        } else {
+        }
+        else
+        {
             Node *temp = head;
             head = head->next;
             delete[] temp;
         }
         size--;
     }
-    void removeAtTail (){
-        if(head == nullptr) return;
+    void removeAtTail()
+    {
+        if (head == nullptr)
+            return;
         else
         {
-            Node *temp = head,*prevNode;
-            if(head->next == nullptr)
+            Node *temp = head, *prevNode;
+            if (head->next == nullptr)
                 head = nullptr;
             else
             {
-                while(temp->next != nullptr)
+                while (temp->next != nullptr)
                 {
                     prevNode = temp;
                     temp = temp->next;
@@ -104,17 +129,22 @@ public:
             delete temp;
         }
     }
-    void removeAt(int index) {
+    void removeAt(int index)
+    {
         if (index == 0)
             removeAtHead();
 
-        else if (index == size - 1) {
+        else if (index == size - 1)
+        {
             removeAtTail();
-        } else {
+        }
+        else
+        {
 
             int counter = 0;
             Node *current = head;
-            while (counter < index - 1) {
+            while (counter < index - 1)
+            {
                 current = current->next;
                 counter++;
             }
@@ -124,88 +154,98 @@ public:
             free(target);
             size--;
         }
-
     }
-    int retrieve(int index){
+    elementType retrieve(int index)
+    {
         Node *current = head;
         int count = 0;
-        while (count <= index - 1) {
+        while (count <= index - 1)
+        {
             current = current->next;
             count++;
-
         }
         return current->data;
     }
 
-    void replaceAt(int newElement, int index) {
+    void replaceAt(elementType newElement, int index)
+    {
         Node *current = head;
         int count = 0;
-        while (count <= index - 1) {
+        while (count <= index - 1)
+        {
             current = current->next;
             count++;
-
         }
 
         current->data = newElement;
-
     }
 
-    bool isExist(int element) {
+    bool isExist(elementType element)
+    {
         bool found = false;
         int counter = 0;
         Node *node = new Node;
         node->data = element;
         Node *current = head;
-        while (current->next != tail) {
-            if (current->data == node->data) {
+        while (current->next != tail)
+        {
+            if (current->data == node->data)
+            {
                 found = true;
                 break;
             }
-            else {
+            else
+            {
                 counter++;
             }
             current = current->next;
         }
 
-        if (counter == size) {
+        if (counter == size)
+        {
             found = false;
         }
         return found;
-
     }
 
-    bool isItemAtEqual(int element, int index) {
+    bool isItemAtEqual(elementType element, int index)
+    {
         bool equal = false;
         int counter = 0;
         Node *node = new Node;
         node->data = element;
         Node *current = head;
-        while (counter <= index - 1) {
+        while (counter <= index - 1)
+        {
             current = current->next;
             counter++;
         }
-        if (current->data == node->data) {
+        if (current->data == node->data)
+        {
             equal = true;
-        } else {
+        }
+        else
+        {
             equal = false;
-
         }
         return equal;
     }
 
-    void swap(int firstItemIdx, int secondItemIdx) {
+    void swap(int firstItemIdx, int secondItemIdx)
+    {
         int counter1 = 0;
         int counter2 = 0;
         Node *current = head;
         Node *current1 = head;
-        while (counter1 != firstItemIdx - 1) {
+        while (counter1 != firstItemIdx - 1)
+        {
             current = current->next;
             counter1++;
         }
-        while (counter2 != secondItemIdx) {
+        while (counter2 != secondItemIdx)
+        {
             current1 = current1->next;
             counter2++;
-
         }
         Node *temp = new Node;
         temp->next = current->next;
@@ -213,54 +253,105 @@ public:
         current1->next = temp->next;
     }
 
-    bool isEmpty() {
+    bool isEmpty()
+    {
         return size == 0;
     }
 
-    int linkedListSize() {
+    int linkedListSize()
+    {
         return size;
     }
 
-    void clear() {
+    void clear()
+    {
+        head = tail = NULL;
         size = 0;
-        delete head;
-        delete tail;
     }
-    void print() {
+    void print()
+    {
         Node *current = head;
-        while (current != nullptr) {
+        while (current != nullptr)
+        {
             cout << current->data << " ";
             current = current->next;
         }
         cout << endl;
     }
+    Node *getLinkedListHead()
+    {
+        return head;
+    }
+    void CombineNodesBetweenZeros()
+    {
+        Node *cur = head->next;
+        SingleLinkedList newList;
+        int sum = 0;
+        int temp = size;
+        while (cur != NULL)
+        {
+            if (cur->data == 0)
+            {
+                newList.insertAtTail(sum);
+                sum = 0;
+            }
+            else
+            {
+                sum += cur->data;
+            }
+            cur = cur->next;
+            this->clear();
+            Node *copyhead = newList.getLinkedListHead();
+            while (copyhead != NULL)
+            {
+                this->insertAtTail(copyhead->data);
+                copyhead = copyhead->next;
+            }
+        }
+    }
 };
 
-
-//problems.
-
-
-
-
+// problems.
 
 /*________________________2)Merge________________________________*/
 
-class Solution {
-public:
-    Node* mergeTwoLists(Node* l1, Node* l2) {
-        Node* dummy = new Node();
-        Node* tail = dummy;
-        while (l1 && l2) {
-            if (l1->data < l2->data) {
-                tail->next = l1;
-                l1 = l1->next;
-            } else {
-                tail->next = l2;
-                l2 = l2->next;
-            }
-            tail = tail->next;
-        }
-        tail->next = l1 ? l1 : l2;
-        return dummy->next;
-    }
-};
+// class Solution
+// {
+// public:
+//     Node *mergeTwoLists(Node *l1, Node *l2)
+//     {
+//         Node *dummy = new Node();
+//         Node *tail = dummy;
+//         while (l1 && l2)
+//         {
+//             if (l1->data < l2->data)
+//             {
+//                 tail->next = l1;
+//                 l1 = l1->next;
+//             }
+//             else
+//             {
+//                 tail->next = l2;
+//                 l2 = l2->next;
+//             }
+//             tail = tail->next;
+//         }
+//         tail->next = l1 ? l1 : l2;
+//         return dummy->next;
+//     }
+// };
+
+int main()
+{
+    // SingleLinkedList<int> l;
+    // l.insertAtTail(0);
+    // l.insertAtTail(1);
+    // l.insertAtTail(3);
+    // l.insertAtTail(0);
+    // l.insertAtTail(4);
+    // l.insertAtTail(5);
+    // l.insertAtTail(3);
+    // l.insertAtTail(0);
+    // l.CombineNodesBetweenZeros();
+    // l.print();
+}
