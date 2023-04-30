@@ -89,6 +89,20 @@ build CMakeFiles/LinearStructure.dir/SLL.cpp.obj: CXX_COMPILER__LinearStructure_
   OBJECT_DIR = CMakeFiles\LinearStructure.dir
   OBJECT_FILE_DIR = CMakeFiles\LinearStructure.dir
 
+build CMakeFiles/LinearStructure.dir/stack.cpp.obj: CXX_COMPILER__LinearStructure_Debug C$:/Users/saraw/OneDrive/«·„” ‰œ« /LinearStructure/stack.cpp || cmake_object_order_depends_target_LinearStructure
+  DEP_FILE = CMakeFiles\LinearStructure.dir\stack.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IC:/Users/saraw/OneDrive/«·„” ‰œ« /LinearStructure/.
+  OBJECT_DIR = CMakeFiles\LinearStructure.dir
+  OBJECT_FILE_DIR = CMakeFiles\LinearStructure.dir
+
+build CMakeFiles/LinearStructure.dir/queue.cpp.obj: CXX_COMPILER__LinearStructure_Debug C$:/Users/saraw/OneDrive/«·„” ‰œ« /LinearStructure/queue.cpp || cmake_object_order_depends_target_LinearStructure
+  DEP_FILE = CMakeFiles\LinearStructure.dir\queue.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IC:/Users/saraw/OneDrive/«·„” ‰œ« /LinearStructure/.
+  OBJECT_DIR = CMakeFiles\LinearStructure.dir
+  OBJECT_FILE_DIR = CMakeFiles\LinearStructure.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target LinearStructure
@@ -97,7 +111,7 @@ build CMakeFiles/LinearStructure.dir/SLL.cpp.obj: CXX_COMPILER__LinearStructure_
 #############################################
 # Link the executable LinearStructure.exe
 
-build LinearStructure.exe: CXX_EXECUTABLE_LINKER__LinearStructure_Debug CMakeFiles/LinearStructure.dir/CLL.cpp.obj CMakeFiles/LinearStructure.dir/DLL.cpp.obj CMakeFiles/LinearStructure.dir/list.cpp.obj CMakeFiles/LinearStructure.dir/SLL.cpp.obj
+build LinearStructure.exe: CXX_EXECUTABLE_LINKER__LinearStructure_Debug CMakeFiles/LinearStructure.dir/CLL.cpp.obj CMakeFiles/LinearStructure.dir/DLL.cpp.obj CMakeFiles/LinearStructure.dir/list.cpp.obj CMakeFiles/LinearStructure.dir/SLL.cpp.obj CMakeFiles/LinearStructure.dir/stack.cpp.obj CMakeFiles/LinearStructure.dir/queue.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\LinearStructure.dir

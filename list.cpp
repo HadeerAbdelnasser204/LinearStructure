@@ -113,3 +113,18 @@ public:
     }
 
 };
+
+int main(){
+    ArrayList<int> list;
+    list.insert(2);
+    list.insert(4);
+    list.insert(6);
+    list.insert(8);
+    list.isFull();
+    list.maxListSize();
+    list.removeAt(0);
+    list.isEmpty();
+    list.print();
+    list.clear();
+
+}

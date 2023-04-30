@@ -5,19 +5,22 @@
 #include <vector>
 using namespace std;
 
+struct Node {
+    int data;
+    Node *next;
+
+    Node(int data) : data(data), next(nullptr) {}
+    Node() : next(nullptr){}
+};
+
 template <typename elementType>
 class SingleLinkedList
 {
-    struct Node
-    {
-        elementType data;
-        Node *next;
-    };
-    Node *head;
-    Node *tail;
+    Node* head;
+    Node* tail;
     int size;
-
 public:
+
     SingleLinkedList()
     {
         size = 0;
@@ -247,7 +250,7 @@ public:
             current1 = current1->next;
             counter2++;
         }
-        Node *temp = new Node;
+        Node *temp = new Node();
         temp->next = current->next;
         current->next = current1->next;
         current1->next = temp->next;
@@ -315,43 +318,75 @@ public:
 
 /*________________________2)Merge________________________________*/
 
-// class Solution
-// {
-// public:
-//     Node *mergeTwoLists(Node *l1, Node *l2)
-//     {
-//         Node *dummy = new Node();
-//         Node *tail = dummy;
-//         while (l1 && l2)
-//         {
-//             if (l1->data < l2->data)
-//             {
-//                 tail->next = l1;
-//                 l1 = l1->next;
-//             }
-//             else
-//             {
-//                 tail->next = l2;
-//                 l2 = l2->next;
-//             }
-//             tail = tail->next;
-//         }
-//         tail->next = l1 ? l1 : l2;
-//         return dummy->next;
-//     }
-// };
+ class Solution
+ {
+ public:
+     Node *mergeTwoLists(Node *l1, Node *l2)
+     {
+         Node *dummy = new Node();
+         Node *tail = dummy;
+         while (l1 && l2)
+         {
+             if (l1->data < l2->data)
+             {
+                 tail->next = l1;
+                 l1 = l1->next;
+             }
+             else
+             {
+                 tail->next = l2;
+                 l2 = l2->next;
+             }
+             tail = tail->next;
+         }
+         tail->next = l1 ? l1 : l2;
+         return dummy->next;
+     }
+ };
 
 int main()
 {
-    // SingleLinkedList<int> l;
-    // l.insertAtTail(0);
-    // l.insertAtTail(1);
-    // l.insertAtTail(3);
-    // l.insertAtTail(0);
-    // l.insertAtTail(4);
-    // l.insertAtTail(5);
-    // l.insertAtTail(3);
-    // l.insertAtTail(0);
-    // l.CombineNodesBetweenZeros();
-    // l.print();
+     SingleLinkedList<int> ll;
+     ll.insertAtHead(6);
+     ll.insertAt(1,9);
+     ll.insertAtTail(10);
+     ll.replaceAt(30,1);
+     ll.isExist(30);
+     ll.swap(0,1);
+     ll.isItemAtEqual(6,0);
+     ll.retrieve(0);
+     ll.print();
+     ll.removeAtTail();
+     ll.removeAt(0);
+     ll.clear();
+
+
+    SingleLinkedList<int> l;
+    l.insertAtTail(0);
+     l.insertAtTail(1);
+     l.insertAtTail(3);
+     l.insertAtTail(0);
+     l.insertAtTail(4);
+     l.insertAtTail(5);
+     l.insertAtTail(3);
+     l.insertAtTail(0);
+     l.CombineNodesBetweenZeros();
+     l.print();
+
+
+        // mergeTwoLists
+        Solution solution;
+        Node* l1 = new Node(1);
+        l1->next = new Node(2);
+        l1->next->next = new Node(4);
+        Node* l2 = new Node(1);
+        l2->next = new Node(3);
+        l2->next->next = new Node(4);
+        Node* result = solution.mergeTwoLists(l1, l2);
+        while (result) {
+            cout << result->data << " ";
+            result = result->next;
+        }
+        cout << endl;
+
 }

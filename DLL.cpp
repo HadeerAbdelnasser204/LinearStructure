@@ -1,17 +1,21 @@
 // Created by Hadeer on 4/18/2023.
 // updated by sara on 29/4/2023.
 #include <iostream>
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node *next;
+    Node *pre;
+    Node(int data) : data(data), next(nullptr) , pre(nullptr){}
+    Node() : next(nullptr), pre(nullptr){}
+};
 
 template <typename T>
-using namespace std;
 class DoubleLinkedList
 {
-    struct Node
-    {
-        T data;
-        Node *next;
-        Node *pre;
-    };
+
     int size;
     Node *head;
     Node *tail;
@@ -338,3 +342,24 @@ public:
         cout << endl;
     }
 };
+
+int main(){
+    DoubleLinkedList<int> DLL;
+    Node* newNode = new Node(70);
+    DLL.insertAtHead(4);
+    DLL.insertAtTail(9);
+    DLL.insertAt(7,1);
+    DLL.replaceAt(5,1);
+    DLL.swap(0,1);
+    DLL.reverse();
+    DLL.forwardTraversal();
+    DLL.backwardTraversal();
+    DLL.retrieve(1);
+    DLL.insertAfter(newNode,30);
+    DLL.isItemEqual(30,3);
+    DLL.removeAt(0);
+    DLL.removeAtHead();
+    DLL.removeAtTail();
+    DLL.doubleLinkedListSize();
+    DLL.clear();
+}

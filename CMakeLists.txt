@@ -10,5 +10,5 @@ add_executable(LinearStructure
         DLL.cpp
         list.cpp
         SLL.cpp
-        queue
-        Stack)
+        stack.cpp
+        queue.cpp)

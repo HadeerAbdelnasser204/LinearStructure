@@ -1,4 +1,3 @@
-// Created by sara on 4/29/2023.
 // updated by sara on 29/4/2023.
 #include <iostream>
 
@@ -10,7 +9,7 @@ class CircularLikedList {
         elementType data;
         Node *next;
 
-        Node() : data(data), next(nullptr) {}
+        Node(elementType data) : data(data), next(nullptr) {}
     };
     Node *head;
     int CLLsize;
@@ -318,3 +317,26 @@ void print() {
         cout << endl;
     }
 };
+
+int main(){
+    CircularLikedList<int> CLL;
+    CLL.insertAtHead(4);
+    CLL.insertAt(9,1);
+    CLL.insertAtEnd(6);
+    CLL.isEmpty();
+    CLL.print();
+    CLL.doubleLinkedListSize();
+    CLL.isItemAtEqual(4,0);
+    CLL.isExist(6);
+    CLL.removeAtHead();
+    CLL.removeAt(2);
+    CLL.removeAtEnd();
+    CLL.insertAtHead(4);
+    CLL.insertAt(10,1);
+    CLL.insertAtEnd(8);
+    CLL.swap(0,2);
+    CLL.print();
+    CLL.retrieveAt(0);
+    CLL.replaceAt(20,1);
+    CLL.clear();
+}
